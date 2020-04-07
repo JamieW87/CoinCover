@@ -18,6 +18,8 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetAllUsers(w http.ResponseWriter, r *http.Request) {
+	payload := service.GetAllUsers()
+	json.NewEncoder(w).Encode(payload)
 
 }
 

@@ -8,6 +8,7 @@ import (
 	"techTask/service"
 )
 
+//CreateUser handles the response for creating a single user
 func CreateUser(w http.ResponseWriter, r *http.Request) {
 	var user models.User
 	_ = json.NewDecoder(r.Body).Decode(&user)
@@ -17,6 +18,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 
 }
 
+//GetAllUsers gets all entries from the DB
 func GetAllUsers(w http.ResponseWriter, r *http.Request) {
 	payload := service.GetAllUsers()
 	json.NewEncoder(w).Encode(payload)

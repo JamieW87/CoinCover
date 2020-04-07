@@ -30,6 +30,7 @@ func init() {
 
 	err = client.Ping(context.TODO(), nil)
 	if err != nil {
+		fmt.Println("Problem connecting to DB. Shutting down")
 		log.Fatal(err)
 	}
 
@@ -43,7 +44,8 @@ func InsertUser(user models.User) {
 
 	_, err := db.Collection(COLLNAME).InsertOne(context.Background(), user)
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println("Could not insert user")
+		fmt.Println(err)
 	}
 
 }
@@ -53,7 +55,6 @@ func GetAllUsers() []models.User {
 
 	cur, err := db.Collection(COLLNAME).Find(context.TODO(), bson.D{{}})
 	if err != nil {
-		fmt.Println("Hi")
 		log.Fatal(err)
 	}
 
